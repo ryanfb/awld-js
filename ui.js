@@ -140,6 +140,7 @@ define('ui',['jquery', 'mustache', 'types'], function($, Mustache, types) {
                     .toggleClass('loading', !html);
             }
             // clear previous content
+            // using xml frag may help in some contexts?
             setContent('<span></span>');
             if ($.isFunction(content)) {
                 // this is a promise; give it a callback
