@@ -131,15 +131,16 @@ define('ui',['jquery', 'mustache', 'types'], function($, Mustache, types) {
             $pop = $pop || $(popHtml);
             // set content
             function setContent(html) {
-               // wrap in root level element to make it valid xml for xml contexts
-                html = "<div class='xml_wraper'>"+html+"</div>";
+                // wrap in root level element to make it valid xml for xml contexts
+                // or push this requirement back onto modules if they want the control
+                html = "<div>"+html+"</div>";
                 $('.awld-content', $pop)
                     .html(html);
                 $('.awld-pop-inner', $pop)
                     .toggleClass('loading', !html);
             }
             // clear previous content
-            setContent('');
+            setContent('<span></span>');
             if ($.isFunction(content)) {
                 // this is a promise; give it a callback
                 content(setContent);
