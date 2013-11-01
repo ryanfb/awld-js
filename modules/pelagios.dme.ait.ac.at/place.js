@@ -6,14 +6,13 @@ define(function() {
         type: 'place',
         toDataUri: function(uri) {
             var pleiadesID = uri.match(/[0-9]+$/);
-            return 'http://pleiades.stoa.org/places/'+ pleiadesID + '/json';
+            return 'http://ryanfb.github.io/pleiades-geojson/geojson/'+ pleiadesID + '.geojson';
         },
-        corsEnabled: true,
         // add name to data
         parseData: function(data) {
-            data.name = data.title;
-            data.latlon = data.reprPoint && data.reprPoint.reverse();
-            data.description = data.description;
+            data.name = data.json.title;
+            data.latlon = data.json.reprPoint && data.json.reprPoint.reverse();
+            data.description = data.json.description;
             return data;
         }
     };
